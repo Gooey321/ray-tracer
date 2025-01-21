@@ -174,7 +174,7 @@ const objects = [
     radius: 3,
     emission: new Vector(0, 0, 0),
     reflectivity: new Vector(0, 0, 0), // Reflective sphere
-    roughness: 1,
+    roughness: 0,
   },
   {
     shape: "sphere",
