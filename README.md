@@ -20,7 +20,7 @@ This project is a simple CPU-based ray tracer built in JavaScript. (I couldn't g
 
 ### Online
 
-1. Head to https://glooey.me/assets/ray-tracer/index.html.
+1. Head to https://glooey.me/assets/CPURay-tracer/index.html.
 2. The ray tracer will start rendering the scene automatically.
 3. At the current sample settings (500 samples at 2 samples per frame) it takes about 2 minutes and 30 seconds (not accurately representative of your time. It depends on the speed of the cpu).
 
