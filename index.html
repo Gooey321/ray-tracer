@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CPU Ray Tracer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h2>CPU Raytracer</h2>
+      <div id="content">
+        <canvas id="canvas" width="250" height="250"></canvas>
+        <div id="console"></div>
+        <div id="fpsDisplay"></div>
+      </div>
+      <div id="controls">
+        <div>
+          <label for="lightX">Light X:</label>
+          <input type="range" id="lightX" min="-100" max="100" value="0" />
+          <span id="lightXValue">0</span>
+        </div>
+        <div>
+          <label for="lightY">Light Y:</label>
+          <input type="range" id="lightY" min="-100" max="100" value="-40" />
+          <span id="lightYValue">-40</span>
+        </div>
+        <div>
+          <label for="lightZ">Light Z:</label>
+          <input type="range" id="lightZ" min="-100" max="100" value="40" />
+          <span id="lightZValue">40</span>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="cpuRender.js"></script>
+  </body>
+</html>
