@@ -13,8 +13,8 @@ const height = 250;
 const focalLength = 100;
 
 // Rendering parameters
-const maxSamples = 10000;
-const samplesPerFrame = 1;
+const maxSamples = 500;
+const samplesPerFrame = 2;
 
 let lastFrameTime = performance.now();
 let fps = 0;
@@ -298,8 +298,9 @@ function renderProgressive() {
       );
 
       for (let s = 0; s < samplesForPixel; s++) {
-        const x = i - width / 2;
-        const y = j - height / 2;
+        const x = i - width / 2 + Math.random() * 0.99;
+        const y = j - height / 2 + Math.random() * 0.99;
+
         const direction = Vector.normalize(new Vector(x, y, focalLength));
 
         // Adaptive bounce depth
