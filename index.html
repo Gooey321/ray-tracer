@@ -62,6 +62,34 @@
           </div>
         </div>
 
+        <div id="quality-controls">
+          <div class="form-group">
+            <label for="maxSamples">Max Samples:</label>
+            <input
+              type="range"
+              id="maxSamples"
+              min="100"
+              max="2000"
+              value="500"
+              step="100"
+            />
+            <span id="maxSamplesValue">500</span>
+          </div>
+          <div class="form-group">
+            <label for="samplesPerFrame">Samples/Frame:</label>
+            <input
+              type="range"
+              id="samplesPerFrame"
+              min="1"
+              max="10"
+              value="2"
+              step="1"
+            />
+            <span id="samplesPerFrameValue">2</span>
+          </div>
+          <button id="applyQuality">Apply Changes</button>
+        </div>
+
         <!-- Add New Sphere Form -->
         <div>
           <h3>Add New Sphere</h3>

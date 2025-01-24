@@ -2,6 +2,18 @@ import { trace, BVHNode, Vector } from "./function.js";
 
 document.body.style.backgroundColor = "#000";
 
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunctiopn(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 // Get the canvas and context
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
@@ -12,8 +24,42 @@ const height = 250;
 const focalLength = 100;
 
 // Rendering parameters
-const maxSamples = 500;
-const samplesPerFrame = 2;
+let maxSamples = 500;
+let samplesPerFrame = 2;
+
+function setupQualityControls() {
+  const maxSamplesSlider = document.getElementById("maxSamples");
+  const samplesPerFrameSlider = document.getElementById("samplesPerFrame");
+  const applyButton = document.getElementById("applyQuality");
+
+  // Update display values
+  maxSamplesSlider.addEventListener("input", (e) => {
+    document.getElementById("maxSamplesValue").textContent = e.target.value;
+  });
+
+  samplesPerFrameSlider.addEventListener("input", (e) => {
+    document.getElementById("samplesPerFrameValue").textContent =
+      e.target.value;
+  });
+
+  // Handle apply button click
+  applyButton.addEventListener("click", () => {
+    maxSamples = parseInt(maxSamplesSlider.value);
+    samplesPerFrame = parseInt(samplesPerFrameSlider.value);
+
+    // Reset and restart render
+    currentSamples = 0;
+    for (let i = 0; i < accumulatedBuffer.length; i++) {
+      accumulatedBuffer[i] = 0;
+      pixelBuffer[i] = 0;
+    }
+    startRender();
+
+    logToConsole(
+      `Quality updated: ${maxSamples} samples, ${samplesPerFrame} per frame`
+    );
+  });
+}
 
 let lastFrameTime = performance.now();
 let fps = 0;
@@ -427,6 +473,10 @@ function onSphereSelected() {
   }
 }
 
+const debouncedUpdatePosition = debounce((index) => {
+  updateSelectedSpherePosition(index);
+}, 100); // 100ms delay
+
 // Function to handle position slider changes
 function onPositionChange(e) {
   const selectedSphereSelect = document.getElementById("selectedSphere");
@@ -450,8 +500,8 @@ function onPositionChange(e) {
     document.getElementById("movePosZValue").textContent = value;
   }
 
-  // Update rendering
-  updateSelectedSpherePosition(selectedIndex);
+  // Use the debounced update instead of immediate update
+  debouncedUpdatePosition(selectedIndex);
 }
 
 function updateSelectedSpherePosition(index) {
@@ -477,6 +527,7 @@ function updateSelectedSpherePosition(index) {
 // Attach event listeners and initialize sphere selection on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   populateSphereSelection();
+  setupQualityControls();
 
   const selectedSphereSelect = document.getElementById("selectedSphere");
   selectedSphereSelect.addEventListener("change", onSphereSelected);
