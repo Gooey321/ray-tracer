@@ -15,6 +15,9 @@ This project is a simple CPU-based ray tracer built in JavaScript. (I couldn't g
 - **Firefly Removal**: Detects and removes bright pixels (fireflies) to improve image quality.
 - **FPS Display**: Shows the current frames per second (FPS) for performance monitoring.
 - **Light Source Controls**: Provides sliders to adjust the position of the light source in real-time.
+- **Change Positions of Objects**: Sliders to change the position of any object in real-time.
+- **Add New Objects**: An panel of options for you to add a new object to the scene with custom colours and sizing as well as location.
+- **Quality Controls**: Change the max samples of a scene as well as how many samples are generated per frame.
 
 ## Usage
 
