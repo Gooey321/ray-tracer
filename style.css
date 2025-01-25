@@ -162,3 +162,22 @@ input[type="range"] {
 #sphereFormContainer.expanded {
   max-height: 500px; /* Adjust this value based on your content height */
 }
+
+.delete-button {
+  background: #500;
+  color: #fff;
+  border: 1px solid #f00;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: monospace;
+}
+
+.delete-button:hover {
+  background: #700;
+}
+
+.delete-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

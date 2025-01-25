@@ -524,6 +524,30 @@ function updateSelectedSpherePosition(index) {
   startRender();
 }
 
+function deleteSelectedSphere() {
+  const selectedShpereSelect = document.getElementById("selectedSphere");
+  const selectedIndex = parseInt(selectedShpereSelect.value, 10);
+
+  if (isNaN(selectedIndex || selectedIndex <= 1)) return;
+
+  objects.splice(selectedIndex, 1);
+
+  bvh = new BVHNode(objects);
+
+  populateSphereSelection();
+  document.getElementById("position-controls").style.display = "none";
+
+  // Reset and restart render
+  currentSamples = 0;
+  for (let i = 0; i < accumulatedBuffer.length; i++) {
+    accumulatedBuffer[i] = 0;
+    pixelBuffer[i] = 0;
+  }
+  startRender();
+
+  logToConsole(`Deleted sphere ${selectedIndex}`);
+}
+
 // Attach event listeners and initialize sphere selection on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   populateSphereSelection();
@@ -559,6 +583,21 @@ document.addEventListener("DOMContentLoaded", () => {
       button.textContent = "▼ Add New Sphere";
     }
   });
+
+  document
+    .getElementById("deleteSphere")
+    .addEventListener("click", deleteSelectedSphere);
+
+  function updateDeleteButtonState() {
+    const deleteButton = document.getElementById("deleteSphere");
+    deleteButton.disabled = objects.length <= 1;
+  }
+
+  const oldPopulateSphereSelection = populateSphereSelection;
+  populateSphereSelection = function () {
+    oldPopulateSphereSelection();
+    updateDeleteButtonState();
+  };
 
   // Start initial render
   startRender();
