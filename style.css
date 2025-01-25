@@ -4,7 +4,6 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #000; /* Set background color to black */
-  height: 100vh;
 }
 #container {
   display: flex;
@@ -23,8 +22,8 @@ canvas {
 }
 #console {
   margin-left: 20px;
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
   background-color: rgba(0, 0, 0, 0.8);
   color: #0f0;
   overflow-y: auto;
@@ -68,6 +67,7 @@ h2 {
 #controls input[type="range"] {
   width: 200px;
   accent-color: #0f0;
+  outline: 2px solid rgb(47, 52, 47);
 }
 
 #object-creator {
@@ -133,4 +133,32 @@ input[type="color"] {
 input[type="range"] {
   accent-color: #0f0;
   width: 150px;
+  outline: 2px solid rgb(47, 52, 47);
+}
+
+.toggle-button {
+  background: none;
+  border: 1px solid #0f0;
+  color: #0f0;
+  padding: 8px 16px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: monospace;
+  margin: 10px 0;
+  border-radius: 3px;
+}
+
+.toggle-button:hover {
+  background: rgba(0, 255, 0, 0.1);
+}
+
+#sphereFormContainer {
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+  overflow: hidden;
+}
+
+#sphereFormContainer.expanded {
+  max-height: 500px; /* Adjust this value based on your content height */
 }

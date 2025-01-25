@@ -546,6 +546,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hide position controls initially
   document.getElementById("position-controls").style.display = "none";
 
+  document.getElementById("toggleSphereForm").addEventListener("click", (e) => {
+    const button = e.target;
+    const container = document.getElementById("sphereFormContainer");
+    const isExpanded = container.classList.contains("expanded");
+
+    if (isExpanded) {
+      container.classList.remove("expanded");
+      button.textContent = "▶ Add New Sphere";
+    } else {
+      container.classList.add("expanded");
+      button.textContent = "▼ Add New Sphere";
+    }
+  });
+
   // Start initial render
   startRender();
 });
