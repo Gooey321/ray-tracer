@@ -18,6 +18,7 @@ This project is a simple CPU-based ray tracer built in JavaScript. (I couldn't g
 - **Change Positions of Objects**: Sliders to change the position of any object in real-time.
 - **Add New Objects**: An panel of options for you to add a new object to the scene with custom colours and sizing as well as location.
 - **Quality Controls**: Change the max samples of a scene as well as how many samples are generated per frame.
+- **Delete Objects**: Option to delete objects in the scene that are uneeded or unwanted.
 
 ## Usage
 
